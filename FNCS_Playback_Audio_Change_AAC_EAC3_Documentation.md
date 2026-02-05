@@ -42,42 +42,33 @@ To verify the capability of switching between different audio codecs (AAC and EA
 
 ## Test Flow Diagram
 
-```
-[Start Audio Change Test]
-           ↓
-[Initialize Test Environment]
-           ↓
-[Create Video Player Pipeline]
-           ↓
-[Load Multi-Codec Stream File]
-     (AAC + EAC3 Audio Tracks)
-           ↓
-[Check Stream Has Multiple Audio Tracks] ──→ [FAIL: Only One Audio Track]
-           ↓ (Pass)
-[Start Playing with First Audio Codec]
-           ↓
-[Record Current Audio Track Info]
-           ↓
-[Switch to Different Audio Track] ←─┐
-           ↓                         │
-[Verify Audio Switch Successful]     │
-           ↓                         │
-[Play Video with New Audio Codec]    │
-           ↓                         │
-[Monitor Playback Quality]            │
-  • Position Progress                 │
-  • Frame Rendering                   │
-  • Audio/Video Sync                  │
-           ↓                         │
-[Check for Audio/Video Errors] ──→ [FAIL: Quality Issues]
-           ↓ (Pass)                  │
-[More Audio Tracks Available?] ──Yes─┘
-           ↓ (No)
-[Verify All Codecs Tested Successfully]
-           ↓
-[Cleanup Pipeline and Resources]
-           ↓
-[Test Complete - SUCCESS]
+```mermaid
+flowchart TD
+    A[Start Audio Change Test] --> B[Initialize Test Environment]
+    B --> C[Create Video Player Pipeline]
+    C --> D[Load Multi-Codec Stream File<br/>AAC + EAC3 Audio Tracks]
+    D --> E{Stream Has Multiple<br/>Audio Tracks?}
+    E -->|No| F[FAIL: Only One Audio Track]
+    E -->|Yes| G[Start Playing with First Audio Codec]
+    G --> H[Record Current Audio Track Info]
+    H --> I[Switch to Different Audio Track]
+    I --> J{Audio Switch<br/>Successful?}
+    J -->|No| K[FAIL: Switch Failed]
+    J -->|Yes| L[Play Video with New Audio Codec]
+    L --> M[Monitor Playback Quality<br/>• Position Progress<br/>• Frame Rendering<br/>• Audio/Video Sync]
+    M --> N{Quality Check<br/>Passed?}
+    N -->|No| O[FAIL: Quality Issues]
+    N -->|Yes| P{More Audio Tracks<br/>Available?}
+    P -->|Yes| I
+    P -->|No| Q[Verify All Codecs Tested Successfully]
+    Q --> R[Cleanup Pipeline and Resources]
+    R --> S[Test Complete - SUCCESS]
+    
+    style A fill:#e1f5fe
+    style S fill:#c8e6c9
+    style F fill:#ffcdd2
+    style K fill:#ffcdd2
+    style O fill:#ffcdd2
 ```
 
 ## Preconditions
@@ -128,4 +119,5 @@ Where:
 **Supported Models:** Video_Accelerator  
 **Estimated Duration:** 3 minutes  
 **Priority:** High  
+
 **Release Version:** M121
