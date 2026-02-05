@@ -114,6 +114,10 @@ flowchart TD
 | 5 | FIREBOLT_COMPLIANCE_CHECK_PTS configuration should be set to yes/no for video PTS validation, currently set to yes |
 | 6 | FIREBOLT_COMPLIANCE_CHECK_FPS configuration should be set to yes/no for frame rate validation, currently set to yes |
 
+## Test Setup
+
+For detailed test setup instructions, please refer to: [Firebolt Native Apps Compliance Suite Test Setup](https://wiki.rdkcentral.com/spaces/TDK/pages/149894400/Firebolt+Native+Apps+Compliance+Suite+Test+Setup)
+
 ## Test Steps
 
 | ID | StepName | Step Description | Expected Result |
@@ -151,5 +155,6 @@ tdk_mediapipelinetests test_appsrc_video_underflow https://<server_hosting_strea
 **Estimated Duration:** 7 minutes  
 
 **Priority:** High
+
 
 **Release Version:** M122
