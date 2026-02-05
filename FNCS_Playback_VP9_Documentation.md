@@ -7,7 +7,6 @@ FNCS_PLAYBACK_07
 FNCS_Playback_VP9
 
 ## Table Of Contents
-- [FNCS\_Playback\_VP9 Test Case Documentation](#fncs_playback_vp9-test-case-documentation)
   - [TestCase ID](#testcase-id)
   - [TestCase Name](#testcase-name)
   - [Table Of Contents](#table-of-contents)
@@ -136,5 +135,6 @@ tdk_mediapipelinetests test_generic_playback https://<server_hosting_stream>:<po
 **Estimated Duration:** 3 minutes  
 
 **Priority:** High
+
 
 **Release Version:** M121
